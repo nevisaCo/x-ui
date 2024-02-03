@@ -6,7 +6,7 @@ yellow='\033[0;33m'
 plain='\033[0m'
 panel_admin='admin'
 panel_password='!q2w3e4r'
-panel_port='99999'
+panel_port='9999'
 
 cur_dir=$(pwd)
 
