@@ -4,6 +4,9 @@ red='\033[0;31m'
 green='\033[0;32m'
 yellow='\033[0;33m'
 plain='\033[0m'
+panel_admin='admin'
+panel_password='!q2w3e4r'
+panel_port='99999'
 
 cur_dir=$(pwd)
 
@@ -84,22 +87,25 @@ install_base() {
 #This function will be called when user installed x-ui out of sercurity
 config_after_install() {
     echo -e "${yellow}出于安全考虑，安装/更新完成后需要强制修改端口与账户密码${plain}"
-    read -p "确认是否继续?[y/n]": config_confirm
-    if [[ x"${config_confirm}" == x"y" || x"${config_confirm}" == x"Y" ]]; then
-        read -p "请设置您的账户名:" config_account
+    #read -p "确认是否继续?[y/n]": config_confirm
+    #if [[ x"${config_confirm}" == x"y" || x"${config_confirm}" == x"Y" ]]; then
+        #read -p "请设置您的账户名:" 
+        config_account="${panel_admin}"
         echo -e "${yellow}您的账户名将设定为:${config_account}${plain}"
-        read -p "请设置您的账户密码:" config_password
+        #read -p "请设置您的账户密码:" 
+        config_password="${panel_password}"
         echo -e "${yellow}您的账户密码将设定为:${config_password}${plain}"
-        read -p "请设置面板访问端口:" config_port
+        #read -p "请设置面板访问端口:" 
+        config_port="${panel_port}"
         echo -e "${yellow}您的面板访问端口将设定为:${config_port}${plain}"
         echo -e "${yellow}确认设定,设定中${plain}"
         /usr/local/x-ui/x-ui setting -username ${config_account} -password ${config_password}
         echo -e "${yellow}账户密码设定完成${plain}"
         /usr/local/x-ui/x-ui setting -port ${config_port}
         echo -e "${yellow}面板端口设定完成${plain}"
-    else
-        echo -e "${red}已取消,所有设置项均为默认设置,请及时修改${plain}"
-    fi
+    #else
+    #    echo -e "${red}已取消,所有设置项均为默认设置,请及时修改${plain}"
+    #fi
 }
 
 install_x-ui() {
